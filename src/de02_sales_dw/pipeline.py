@@ -9,7 +9,9 @@ SILVER_SQL = Path("sql/silver.sql")
 GOLD_SQL = Path("sql/gold.sql")
 
 # connect to DuckDB
-con = duckdb.connect(DB_PATH, read_only=False)
+con = duckdb.connect(
+    DB_PATH, read_only=False, config={"storage_compatibility_version": "v1.5.6"}
+)
 
 # Bronze Layer
 sql = BRONZE_SQL.read_text(encoding="utf-8")
